@@ -1,0 +1,7 @@
+/* Design tokens, reset and base typography. Must load first so component
+   stylesheets can override it and consume the variables. */
+@import './styles/theme.css';
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

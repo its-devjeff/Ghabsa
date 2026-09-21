@@ -1,0 +1,207 @@
+/* ==========================================================================
+   A single blog post: the article in a reading column, with the rest of the
+   blog listed alongside it so there is somewhere to go at the end.
+   ========================================================================== */
+
+.Post-layout {
+  display: grid;
+  gap: var(--space-9);
+}
+
+/* ---- Article ---------------------------------------------------------------- */
+
+.Post {
+  min-width: 0;
+  max-width: 42rem;
+  align-self: start;
+}
+
+.Post-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-8);
+}
+
+.Post-head {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.Post-title {
+  margin: 0;
+  font-size: var(--display-2);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: var(--color-heading);
+}
+
+.Post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-500);
+}
+
+.Post-meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--ink-300);
+}
+
+/* ---- Body ------------------------------------------------------------------
+   The old page put the whole article in one justified paragraph with no
+   spacing. Generous leading, a capped measure and real gaps between blocks
+   are what make it readable. */
+
+.Post-body p {
+  margin: 0 0 var(--space-6);
+  font-size: var(--text-lg);
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.Post-body p:last-child {
+  margin-bottom: 0;
+}
+
+.Post-body h2 {
+  margin: var(--space-9) 0 var(--space-4);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.Post-body h2:first-child {
+  margin-top: 0;
+}
+
+/* ---- Reading list ----------------------------------------------------------- */
+
+.Post-aside {
+  min-width: 0;
+}
+
+.Post-aside-inner {
+  padding: var(--space-6);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-xl);
+}
+
+.Post-aside-heading {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+.Post-aside-empty {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink-500);
+}
+
+.Post-aside-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.Post-aside-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: background-color 180ms ease;
+}
+
+.Post-aside-item:hover,
+.Post-aside-item:focus-visible {
+  background-color: var(--color-surface);
+}
+
+.Post-aside-thumb {
+  flex: 0 0 auto;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background-color: var(--ink-100);
+}
+
+.Post-aside-text {
+  min-width: 0;
+}
+
+.Post-aside-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-heading);
+  /* Titles run long; three lines is enough to identify a post. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.Post-aside-date {
+  display: block;
+  margin-top: var(--space-1, 4px);
+  font-size: var(--text-xs);
+  color: var(--ink-400);
+}
+
+.Post-aside-all {
+  display: inline-block;
+  margin-top: var(--space-5);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.Post-aside-all:hover {
+  text-decoration: underline;
+}
+
+/* ---- Wider screens ---------------------------------------------------------- */
+
+@media (min-width: 1000px) {
+  .Post-layout {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+  }
+
+  /* The column stretches to the row so the panel inside it has somewhere to
+     stick as the reader moves down a long article. */
+  .Post-aside {
+    height: 100%;
+  }
+
+  .Post-aside-inner {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-6));
+  }
+}

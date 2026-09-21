@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Research — copy + supporting image, two columns on desktop.
+   ========================================================================== */
+
+.Research-wrapper {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--section-y) var(--container-pad);
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.R-con {
+  min-width: 0;
+}
+
+.R-info {
+  margin: 0;
+}
+
+.R-con h2 {
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-heading);
+}
+
+/* ---- Benefit list ------------------------------------------------------- */
+
+.R-list {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+/* Ticks were bright green; brand blue keeps the palette coherent. */
+.R-list .faCheckCircle,
+.R-list svg {
+  flex-shrink: 0;
+  margin-right: 0;
+  margin-top: 0.3em;
+  background-color: transparent;
+  color: var(--color-primary);
+  font-size: var(--text-base);
+}
+
+/* ---- Image -------------------------------------------------------------- */
+
+.flex-container-img {
+  min-width: 0;
+  /* Replaces the two conflicting fixed pixel heights. */
+  height: auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.flex-container-img img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .Research-wrapper {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: var(--space-8);
+  }
+}

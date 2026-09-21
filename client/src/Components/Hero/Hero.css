@@ -1,0 +1,24 @@
+/* Hero carousel. Height is driven by aspect-ratio rather than a fixed pixel
+   value so the imagery scales cleanly from phone to desktop. */
+
+.CarouselSlider {
+  width: 100%;
+}
+
+.Carousel-container-div,
+.carousel-container-div {
+  width: 100%;
+}
+
+.carousel-img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background-color: var(--ink-100);
+}
+
+@media (min-width: 768px) {
+  .carousel-img {
+    aspect-ratio: 3 / 2;
+  }
+}

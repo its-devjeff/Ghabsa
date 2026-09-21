@@ -1,0 +1,48 @@
+.Result-wrapper{
+    display: flex;
+    height: 100%;
+    margin-left: 10%;
+    width: 80%;
+    justify-content: center;
+    align-items: flex-start;
+    position:relative;
+    flex-direction: column;
+}    
+.ic{
+ margin-left: 10%;
+text-align: center;
+}
+.nav-btn{
+    margin:0.25em;
+    padding: 0.25em 1em;
+    border-radius:3px;
+}
+/* ---- Empty, idle and error states ---------------------------------------------
+   The page used to render "No results found" the moment it opened, before
+   anything had been asked for. These three states keep those cases apart. */
+
+.Result-count {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--ink-500);
+}
+
+.Result-state {
+  max-width: 46ch;
+  padding: var(--space-8) 0;
+}
+
+.Result-state-title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.Result-state-note {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}

@@ -1,0 +1,79 @@
+.table-main{
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    margin-top: 2em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.16),
+    0px 7px 7px rgba(0, 0, 0, 0.16),
+    0px 16px 16px rgba(0, 0, 0, 0.16),
+    0px 25px 25px rgba(0, 0, 0, 0.16);
+}
+.th-text{
+    font-size: 20px;
+    font-family: 'Poppins','Sans serif';
+    color: #00000099;
+}
+.td-title{
+    text-align: center;
+    width: 20%;
+    border: 2.25px solid black;
+    font-size: 18px;
+    text-transform: capitalize;
+    font-family: 'Poppins','Sans serif';
+}
+.td-description{
+    padding-left: 2em;
+    border: 2.25px solid black;
+    width: 50%;
+    padding: 1em;
+    font-family: 'Poppins','Sans serif';
+}
+.td-img{
+    width: 100%;
+    border: 2.25px solid black;
+    text-align: center; 
+}
+.td-btn{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins','Sans serif';
+}
+.edit, .delete{
+    width: 4.5em;
+    height: 2.25em;
+    font-size: 16px;
+    margin-left: 0.75em;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins','Sans serif';
+}
+.edit{
+    background-color: orange;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+.delete{
+    background-color: red;
+    color: white;
+    font-weight: 600;
+    margin-right: 0.75em;
+    transition: all 0.3s ease-in-out;
+}
+.edit:hover{
+    background-color: white;
+    color: orangered;
+    border: 2.25px solid orange;
+}
+.delete:hover{
+    background-color: white;
+    color: black;
+    border: 2.25px solid black;
+}

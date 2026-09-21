@@ -1,0 +1,125 @@
+/* ==========================================================================
+   Shared frame for content pages. The header bar is fixed and see-through
+   over the landing hero, so every page that uses this shell has to clear it
+   with its own top padding.
+   ========================================================================== */
+
+.PageShell {
+  display: block;
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  padding-top: calc(var(--header-h) + var(--space-9));
+  padding-bottom: var(--section-y);
+}
+
+/* ---- Page header ---------------------------------------------------------- */
+
+.PageShell-head {
+  max-width: 46rem;
+  margin-bottom: var(--space-9);
+}
+
+.PageShell-title {
+  margin: 0;
+  font-size: var(--display-2);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: var(--color-heading);
+}
+
+.PageShell-intro {
+  margin: var(--space-5) 0 0;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}
+
+/* ---- Body ------------------------------------------------------------------
+   A single readable column. Prose pages are long, so the measure is capped
+   rather than run to the full container width. */
+
+.PageShell-body {
+  max-width: 52rem;
+}
+
+.PageShell-body > * + * {
+  margin-top: var(--space-8);
+}
+
+/* Multi-column pages set their own measure per column. */
+.PageShell-body--wide {
+  max-width: none;
+}
+
+/* ---- Prose ----------------------------------------------------------------
+   Shared type scale for the written pages, so Prepcon, Congress and Sport
+   read as the same publication rather than three separate documents. */
+
+.Prose h2 {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.Prose h3 {
+  margin: var(--space-6) 0 var(--space-3);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.Prose p {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+.Prose p:last-child {
+  margin-bottom: 0;
+}
+
+.Prose ul,
+.Prose ol {
+  margin: 0 0 var(--space-4);
+  padding-left: var(--space-6);
+}
+
+.Prose li {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+/* ---- Section blocks -------------------------------------------------------- */
+
+.Prose-section {
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--color-border);
+}
+
+.Prose-section:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+/* ---- Pull quote ------------------------------------------------------------ */
+
+.Prose-note {
+  margin: 0;
+  padding: var(--space-6);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: var(--leading-snug, 1.3);
+  color: var(--color-heading);
+}

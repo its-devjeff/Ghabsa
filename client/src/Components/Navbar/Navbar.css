@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Signed-in dashboard. A standard app sidebar: fixed to the left edge, the
+   full height of the viewport under the header, square corners, no floating
+   rounded panel.
+   ========================================================================== */
+
+.Dash {
+  --dash-sidebar-w: 16rem;
+
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.Dash-body {
+  padding-top: var(--header-h);
+}
+
+/* ---- Small-screen toggle --------------------------------------------------- */
+
+.Dash-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) var(--space-5) 0;
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+/* ---- Sidebar ----------------------------------------------------------------
+   Fixed rather than sticky, so it holds the full height of the viewport and
+   never scrolls out of reach. Square to the edges, with a hairline separating
+   it from the content rather than a radius and a gap. */
+
+.Dash-sidebar {
+  position: fixed;
+  top: var(--header-h);
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  display: none;
+  flex-direction: column;
+  width: var(--dash-sidebar-w);
+  padding: var(--space-5) var(--space-4);
+  overflow-y: auto;
+  background-color: var(--color-bg-alt);
+  border-right: 1px solid var(--color-border);
+}
+
+.Dash-sidebar.is-open {
+  display: flex;
+}
+
+/* ---- Items ------------------------------------------------------------------ */
+
+.Dash-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.Dash-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: left;
+  color: var(--ink-500);
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.Dash-item:hover {
+  background-color: var(--ink-100);
+  color: var(--color-heading);
+}
+
+/* The active section takes the same brand tint the "For you" chips use, so
+   the dashboard and the landing page share one vocabulary. */
+.Dash-item.is-active {
+  background-color: var(--brand-100);
+  color: var(--brand-700);
+  font-weight: 700;
+}
+
+.Dash-item-icon {
+  width: 1.1rem;
+  font-size: var(--text-base);
+}
+
+.Dash-logout {
+  margin-top: auto;
+  color: var(--ink-400);
+}
+
+.Dash-logout:hover {
+  background-color: var(--ink-100);
+  color: var(--color-heading);
+}
+
+/* ---- Content ---------------------------------------------------------------- */
+
+.Dash-content {
+  min-width: 0;
+  padding: var(--space-7) var(--space-6) var(--section-y);
+}
+
+/* ---- Wider screens ---------------------------------------------------------- */
+
+@media (min-width: 900px) {
+  .Dash-toggle {
+    display: none;
+  }
+
+  .Dash-sidebar {
+    display: flex;
+  }
+
+  /* The sidebar is out of flow, so the content is inset by its width. */
+  .Dash-content {
+    margin-left: var(--dash-sidebar-w);
+    padding-inline: var(--space-8);
+  }
+}

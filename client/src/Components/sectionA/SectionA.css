@@ -1,0 +1,351 @@
+/* ==========================================================================
+   Upcoming dinner — Astra Aurea, 22 September 2026.
+   Two halves: the photograph carries the event design and the date, and the
+   ticket tiers fan out beside it so the artwork itself does the selling.
+   ========================================================================== */
+
+.container-a {
+  background-color: var(--color-bg);
+  padding-block: var(--section-y);
+}
+
+.container-a-items {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+/* ---- Section headline ------------------------------------------------------ */
+
+.Dinner-headline {
+  margin: 0 0 var(--space-8);
+  max-width: 22ch;
+  /* Deliberately below --display-1: it leads the section, but the ticket
+     artwork beside it is the thing meant to pull the eye. */
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  color: var(--color-heading, var(--ink-900));
+}
+
+.Dinner-headline-em {
+  /* Gold sampled from the Astra Aurea design, so the headline ties to the
+     event rather than to the site's own accent. */
+  color: #b8913a;
+}
+
+.Dinner-layout {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+/* ---- Photograph ----------------------------------------------------------- */
+
+/* Gold sampled from the Astra Aurea design: deep edge, body, highlight. */
+.Dinner-frame {
+  --gold-deep: #b8913a;
+  --gold: #e3c25c;
+  --gold-light: #f7eda8;
+
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
+  /* The photograph is a full-length studio portrait, so the frame stays tall
+     rather than cinematic. The crop is anchored near the top of the source so
+     both faces survive it. */
+  aspect-ratio: 4 / 5;
+  background-color: var(--ink-100);
+  isolation: isolate;
+}
+
+.Dinner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 4%;
+  transition: transform 900ms var(--ease-out-expo);
+}
+
+.Dinner-frame:hover .Dinner-img {
+  transform: scale(1.03);
+}
+
+/* Scrim: dark at both ends — the top carries the design, the bottom the date,
+   and the photograph's backdrop is pale enough to swallow both without it. */
+.Dinner-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 13, 22, 0.62) 0%,
+    rgba(6, 13, 22, 0.18) 32%,
+    rgba(6, 13, 22, 0.34) 62%,
+    rgba(6, 13, 22, 0.90) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---- Event design (top right) --------------------------------------------- */
+
+.Dinner-design {
+  position: absolute;
+  z-index: 2;
+  top: var(--space-6);
+  right: var(--space-6);
+  width: min(58%, 17rem);
+  height: auto;
+  /* The artwork already carries its own glow; a soft drop shadow keeps the
+     thin gold strokes off the lighter parts of the backdrop. */
+  filter: drop-shadow(0 2px 10px rgba(6, 13, 22, 0.55));
+  pointer-events: none;
+}
+
+/* ---- Date (bottom) --------------------------------------------------------- */
+
+.Dinner-overlay {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: var(--space-6);
+}
+
+.Dinner-date {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--display-2);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  /* Gold gradient to echo the design's metallic fill. Painted through the
+     text; the solid colour underneath is the fallback where that is
+     unsupported. */
+  color: var(--gold);
+  background-image: linear-gradient(
+    180deg,
+    var(--gold-light) 0%,
+    var(--gold) 48%,
+    var(--gold-deep) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@supports not ((background-clip: text) or (-webkit-background-clip: text)) {
+  .Dinner-date {
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
+
+/* ---- Ticket column --------------------------------------------------------- */
+
+.Tickets {
+  --gold-deep: #b8913a;
+  --gold: #e3c25c;
+  --gold-light: #f7eda8;
+}
+
+.Tickets-eyebrow {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.Tickets-kind {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted, var(--color-text));
+}
+
+.Tickets-title {
+  margin: var(--space-3) 0 0;
+  /* A step below the section headline so the two do not compete. */
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--color-heading, var(--ink-900));
+}
+
+.Tickets-title-em {
+  display: block;
+  color: var(--gold-deep);
+}
+
+.Tickets-lead {
+  margin: var(--space-4) 0 0;
+  max-width: 38ch;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted, var(--color-text));
+}
+
+/* ---- The fan ---------------------------------------------------------------
+   Wide 3:1 tickets stacked with a shared origin at the bottom-left, each one
+   pivoted a few degrees further round so the stack opens like a hand of cards.
+   The list is its own stacking context; z-index comes from the markup order. */
+
+.Tickets-fan {
+  position: relative;
+  list-style: none;
+  margin: var(--space-7) 0 0;
+  padding: 0;
+  /* Reserve the swept height: the fanned cards are absolutely positioned, so
+     nothing else establishes it, and the widest card sweeps well above its
+     own bottom edge. */
+  aspect-ratio: 5 / 4;
+  isolation: isolate;
+}
+
+.Tickets-card {
+  position: absolute;
+  left: 0;
+  width: 88%;
+  transform-origin: 8% 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(6, 13, 22, 0.28);
+  transition: transform 550ms var(--ease-out-expo),
+              box-shadow 550ms var(--ease-out-expo);
+}
+
+.Tickets-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Bottom of the stack sweeps furthest; the top card sits nearly square. */
+.Tickets-card--tot {
+  bottom: 0;
+  transform: rotate(-26deg);
+}
+
+.Tickets-card--single {
+  bottom: 0;
+  transform: rotate(-13deg);
+}
+
+.Tickets-card--early {
+  bottom: 0;
+  transform: rotate(0deg);
+}
+
+/* Opening the fan on hover: each card swings out a little further. */
+.Tickets-fan:hover .Tickets-card--tot {
+  transform: rotate(-34deg) translateY(-2%);
+}
+
+.Tickets-fan:hover .Tickets-card--single {
+  transform: rotate(-18deg) translateY(-1%);
+}
+
+.Tickets-fan:hover .Tickets-card--early {
+  transform: rotate(1.5deg) translateY(-3%);
+  box-shadow: 0 18px 40px rgba(6, 13, 22, 0.34);
+}
+
+/* No hover spread when motion is reduced — the resting fan is the only state. */
+@media (prefers-reduced-motion: reduce) {
+  .Tickets-card,
+  .Dinner-img {
+    transition: none;
+  }
+
+  .Tickets-fan:hover .Tickets-card--tot {
+    transform: rotate(-26deg);
+  }
+
+  .Tickets-fan:hover .Tickets-card--single {
+    transform: rotate(-13deg);
+  }
+
+  .Tickets-fan:hover .Tickets-card--early {
+    transform: rotate(0deg);
+  }
+}
+
+/* ---- Price key -------------------------------------------------------------
+   The tier and price are burned into the artwork, but the artwork is rotated
+   and partly covered in the fan — so the same three facts are repeated as
+   plain text underneath, which is also what a screen reader gets. */
+
+.Tickets-prices {
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.Tickets-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.Tickets-price-tier {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.Tickets-price-amount {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--gold-deep);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Wider screens -------------------------------------------------------- */
+
+@media (min-width: 700px) {
+  .Dinner-design {
+    top: var(--space-8);
+    right: var(--space-8);
+    width: min(24%, 15rem);
+  }
+
+  .Dinner-overlay {
+    padding: var(--space-8);
+  }
+}
+
+@media (min-width: 1000px) {
+  .Dinner-layout {
+    grid-template-columns: 1.05fr 1fr;
+    gap: var(--space-10, var(--space-8));
+  }
+
+  /* Beside the tickets the frame is a column rather than a band, so it goes
+     back to the portrait ratio the photograph was shot in. */
+  .Dinner-frame {
+    aspect-ratio: 4 / 5;
+  }
+
+  .Dinner-design {
+    width: min(52%, 15rem);
+  }
+}

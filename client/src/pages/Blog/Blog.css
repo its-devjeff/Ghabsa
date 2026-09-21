@@ -1,0 +1,130 @@
+/* ==========================================================================
+   Blog index. The cards used to be 23%-wide boxes with a hard outline and a
+   fixed 350px height, and both the excerpt and the "Read more" link were set
+   to display:none, so every card was a picture and a cropped title. This is
+   a plain responsive grid with the text restored and no boxes.
+   ========================================================================== */
+
+.blog-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+.blogpost-card {
+  margin: 0;
+}
+
+.blogcard-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+}
+
+.blogcard-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  background-color: var(--ink-100);
+  transition: transform 600ms var(--ease-out-expo);
+}
+
+.blogcard-link:hover .blogcard-img {
+  transform: scale(1.02);
+}
+
+.blogcard-body {
+  display: block;
+  padding-top: var(--space-4);
+}
+
+.blogcard-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-heading);
+}
+
+.blogcard-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}
+
+.b-Read-more {
+  display: inline-block;
+  margin-top: var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.blogcard-link:hover .b-Read-more {
+  text-decoration: underline;
+}
+
+.blog-empty {
+  margin: 0;
+  font-size: var(--text-base);
+  color: var(--ink-500);
+}
+
+/* ---- Loading ---------------------------------------------------------------- */
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Was position:fixed over the whole viewport, which covered the page it was
+     loading into. It now sits in the space the list will occupy. */
+  min-height: 12rem;
+  width: 100%;
+}
+
+.loading__dot {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin: var(--space-2);
+  border-radius: 50%;
+  background-color: var(--brand-300);
+  animation: dot ease-in-out 1s infinite;
+}
+
+.loading__dot:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+.loading__dot:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes dot {
+  0% { background-color: var(--brand-300); transform: scale(1); }
+  50% { background-color: var(--color-primary); transform: scale(1.3); }
+  100% { background-color: var(--brand-300); transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading__dot {
+    animation: none;
+  }
+
+  .blogcard-link:hover .blogcard-img {
+    transform: none;
+  }
+}

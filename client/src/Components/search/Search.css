@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Past-paper search band.
+   NOTE: this used to use the class `.Search-wrapper`, which is also declared
+   by Components/Quiz/search and pages/Library. CRA bundles every stylesheet
+   into one document, so those rules leaked in and overrode this band's
+   background. Renamed to `.PaperSearch` to keep it isolated.
+   ========================================================================== */
+
+.PaperSearch {
+  background-color: var(--color-bg-alt);
+  padding-block: var(--section-y);
+  padding-inline: var(--container-pad);
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+}
+
+.PaperSearch .row {
+  width: 100%;
+  max-width: 44rem;
+  margin: 0;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lift);
+  text-align: center;
+}
+
+.PaperSearch .row h3 {
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  text-transform: none;
+  color: var(--color-heading);
+}
+
+/* ---- Input group -------------------------------------------------------- */
+
+.Search-box-i {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  /* Wraps to two rows on very narrow phones rather than squashing. */
+  flex-wrap: wrap;
+}
+
+.Search-box-i input {
+  flex: 1 1 14rem;
+  min-width: 0;
+  width: auto;
+  /* Fixed control height — the inherited 1.6 body line-height was making
+     the field noticeably taller than it needed to be. */
+  height: 2.875rem;
+  padding: 0 var(--space-4);
+  line-height: 1.2;
+  background-color: var(--ink-050);
+  border: none;
+  border-radius: var(--radius-md);
+  outline: none;
+  color: var(--color-text);
+  font-size: var(--text-base);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.Search-box-i input::placeholder {
+  color: var(--ink-400);
+  font-size: var(--text-base);
+  padding-left: 0;
+}
+
+.Search-box-i input:focus {
+  background-color: var(--white);
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+.s-submit {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  /* Square, matching the field height rather than towering over it. */
+  width: 2.875rem;
+  height: 2.875rem;
+  padding: 0;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-on-primary);
+  font-size: var(--text-sm);
+  transition: background-color var(--transition);
+}
+
+.s-submit:hover {
+  background-color: var(--color-primary-hover);
+}
+
+@media (max-width: 479px) {
+  /* Full-width button once the field has wrapped onto its own row. */
+  .s-submit {
+    flex: 1 1 100%;
+    width: auto;
+  }
+}

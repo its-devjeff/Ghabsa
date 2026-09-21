@@ -1,0 +1,102 @@
+/* AnimatedShapes.css */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css');
+
+:root {
+  --primary-color: #8123ce;
+  --secondary-color: #3a54c6;
+  --third-color: #46a7dc;
+  --circle-size: 100px;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /*background-image: url(http://kontramax.com/wp-content/uploads/temp/Background.jpg);*/
+}
+
+.inner-container {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shape-container {
+  margin: 0 auto;
+  position: relative;
+  opacity: 0.7;
+}
+
+.random-shape:after {
+  font-family: FontAwesome;
+  content: "\f04d";
+}
+
+@keyframes shape-animation {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(360deg);
+  }
+}
+
+.shape-animation {
+  animation: shape-animation 40s linear infinite;
+}
+
+.shape-container .random-shape {
+  margin: var(--circle-size);
+  color: var(--primary-color);
+  font-size: calc(var(--circle-size) * 0.2);
+}
+
+/* Adjust the size and colors of the shapes as needed */
+.shape-container--1 .random-shape {
+  color: var(--secondary-color);
+}
+
+.shape-container--2 .random-shape {
+  color: var(--third-color);
+}
+
+.animation-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.shape-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Push the shape animation layer behind the text layer */
+  /* Add the rest of the shape animation styles here */
+}
+
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Push the text layer in front of the shape animation layer */
+  text-align: center;
+  color: white;
+}
+
+.text-container h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.text-container p {
+  font-size: 1.5rem;
+}

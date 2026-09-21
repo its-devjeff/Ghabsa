@@ -1,0 +1,240 @@
+/* ==========================================================================
+   Contact us.
+
+   The old page was a single stack of unlabelled inputs under a waving hand,
+   with no way to reach the association except through a form that reported
+   itself through window.alert. This is a form beside the details someone
+   might actually want: the addresses, where the department is, and where the
+   association posts.
+   ========================================================================== */
+
+.Contact {
+  display: grid;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.Contact-heading {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-heading);
+}
+
+.Contact-note {
+  margin: 0 0 var(--space-7);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}
+
+/* ---- Form ---------------------------------------------------------------------- */
+
+.Contact-form-panel {
+  min-width: 0;
+  padding: var(--space-8);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-xl);
+}
+
+.Contact-form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.Contact-field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.Contact-field label {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.Contact-field input,
+.Contact-field textarea {
+  width: 100%;
+  padding: var(--space-4);
+  font-family: inherit;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-heading);
+  background-color: var(--white, #fff);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.Contact-field textarea {
+  resize: vertical;
+  min-height: 9rem;
+}
+
+.Contact-field input::placeholder,
+.Contact-field textarea::placeholder {
+  color: var(--ink-400);
+}
+
+.Contact-field input:focus,
+.Contact-field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--brand-100);
+}
+
+.Contact-field input[aria-invalid='true'],
+.Contact-field textarea[aria-invalid='true'] {
+  border-color: #c0392b;
+}
+
+.Contact-error {
+  font-size: var(--text-sm);
+  color: #c0392b;
+}
+
+/* ---- Actions -------------------------------------------------------------------- */
+
+.Contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.Contact-submit {
+  padding: var(--space-4) var(--space-8);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--white, #fff);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 180ms ease, opacity 180ms ease;
+}
+
+.Contact-submit:hover:not(:disabled) {
+  background-color: var(--brand-700);
+}
+
+.Contact-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.Contact-status {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.Contact-status--good {
+  color: var(--brand-700);
+}
+
+.Contact-status--bad {
+  color: #c0392b;
+}
+
+.Contact-status a {
+  color: inherit;
+}
+
+/* ---- Details alongside ----------------------------------------------------------- */
+
+.Contact-aside {
+  display: grid;
+  gap: var(--space-7);
+  min-width: 0;
+}
+
+.Contact-list {
+  list-style: none;
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+}
+
+.Contact-item {
+  display: grid;
+  gap: var(--space-1, 4px);
+}
+
+.Contact-item-label {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.Contact-item-value {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-heading);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.Contact-item-value:hover {
+  text-decoration: underline;
+}
+
+.Contact-item-detail {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}
+
+.Contact-address {
+  margin: 0;
+  font-style: normal;
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.Contact-socials {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+}
+
+.Contact-social {
+  display: inline-block;
+  padding: var(--space-2) var(--space-5);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.Contact-social:hover {
+  background-color: var(--brand-100);
+  color: var(--brand-700);
+}
+
+/* ---- Wider screens ---------------------------------------------------------------- */
+
+@media (min-width: 900px) {
+  .Contact {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: var(--space-9);
+  }
+}

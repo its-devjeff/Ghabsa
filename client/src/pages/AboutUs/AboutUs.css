@@ -1,0 +1,198 @@
+/* ==========================================================================
+   About us.
+
+   The old layout put dark text straight onto a fixed-attachment photograph
+   inside a half-width blur box, justified every paragraph, and hardcoded
+   2.8rem headings, so on a laptop the statement sat unreadably over faces and
+   the body copy broke into rivers of white space. This is a normal image
+   panel with the statement in a legible scrim over it.
+   ========================================================================== */
+
+.about-container {
+  display: grid;
+  gap: var(--space-9);
+}
+
+/* ---- Statement over the photograph ------------------------------------------ */
+
+.about-content-1 {
+  position: relative;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  /* The image itself is set inline in the component: webpack resolves url()
+     at build time and cannot see files served from /public. The scrim and the
+     sizing stay here. Scrolls with the page, unlike the old
+     background-attachment: fixed, which detached it from its own panel. */
+  background-color: var(--ink-900);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  text-align: left;
+  z-index: auto;
+}
+
+.blur {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+  margin: 0;
+  padding: var(--space-8);
+  background-color: transparent;
+  backdrop-filter: none;
+}
+
+.abt-cnt1 {
+  display: block;
+  width: auto;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 1.1rem + 1.9vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-wrap: balance;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.abt-clr {
+  color: var(--color-accent);
+}
+
+.abt-cnt2 {
+  width: auto;
+  max-width: 46ch;
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: var(--leading-relaxed);
+  text-align: left;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---- Second block ------------------------------------------------------------ */
+
+.about-content-2 {
+  display: block;
+  width: 100%;
+  padding: 0;
+}
+
+.abt-cnt3 {
+  display: block;
+  width: auto;
+  margin: 0 0 var(--space-5);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: var(--color-heading);
+}
+
+.about-content-flex {
+  display: block;
+}
+
+.abt-cnt4 {
+  display: block;
+  width: auto;
+  max-width: 62ch;
+  text-align: left;
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.abt-cnt4 p {
+  margin: 0 0 var(--space-5);
+  line-height: var(--leading-relaxed);
+}
+
+.abt-cnt4 p:last-child {
+  margin-bottom: 0;
+}
+
+.cnt-p {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--gold-700);
+}
+
+.about-divider {
+  display: none;
+}
+
+/* ---- Wider screens ------------------------------------------------------------
+   Two columns from tablet up: the statement leads, the supporting line sits
+   beside it rather than underneath a half-width box. */
+
+@media (min-width: 800px) {
+  .blur {
+    grid-template-columns: 1.15fr 1fr;
+    gap: var(--space-8);
+    padding: var(--space-10, var(--space-9));
+    align-items: center;
+  }
+}
+
+/* ---- The lab wall --------------------------------------------------------------
+   Mixed portrait and landscape frames, so the photographs are laid out in
+   columns and left at their own proportions rather than cropped into a grid
+   of equal squares. */
+
+.about-lab-intro {
+  max-width: 62ch;
+  margin: 0 0 var(--space-7);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+.about-lab-wall {
+  column-count: 1;
+  column-gap: var(--space-4);
+}
+
+.about-lab-shot {
+  margin: 0 0 var(--space-4);
+  break-inside: avoid;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--ink-100);
+}
+
+.about-lab-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 700ms var(--ease-out-expo);
+}
+
+.about-lab-shot:hover img {
+  transform: scale(1.03);
+}
+
+@media (min-width: 640px) {
+  .about-lab-wall {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1000px) {
+  .about-lab-wall {
+    column-count: 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-lab-shot img,
+  .about-lab-shot:hover img {
+    transition: none;
+    transform: none;
+  }
+}

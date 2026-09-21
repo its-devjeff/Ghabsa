@@ -1,0 +1,67 @@
+/* ==========================================================================
+   The full executive roster.
+   ========================================================================== */
+
+.Staff-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.Staff-card {
+  margin: 0;
+}
+
+.Staff-photo {
+  position: relative;
+  overflow: hidden;
+  /* Same ratio as the landing page carousel, so a face that is framed there
+     is framed here. */
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  background-color: var(--ink-100);
+}
+
+.Staff-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out-expo);
+}
+
+.Staff-card:hover .Staff-photo img {
+  transform: scale(1.04);
+}
+
+.Staff-text {
+  padding-top: var(--space-4);
+}
+
+.Staff-name {
+  margin: 0;
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-heading);
+}
+
+.Staff-office {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .Staff-photo img {
+    transition: none;
+  }
+
+  .Staff-card:hover .Staff-photo img {
+    transform: none;
+  }
+}

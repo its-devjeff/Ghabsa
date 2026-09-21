@@ -1,0 +1,63 @@
+.MNT-div{
+  
+   
+border: 1px solid red;
+width:90%;
+height: 100%;
+padding:2em;
+border:1px solid white;
+border-radius:1.25em;
+margin:5em auto;
+background-color: #FFFFFF;
+    box-shadow:
+      2px 2.2px 4px -16px rgba(0, 0, 0, 0.21),
+      4.4px 4.8px 8.8px -16px rgba(0, 0, 0, 0.166),
+      7.3px 8px 14.7px -16px rgba(0, 0, 0, 0.145),
+      11px 12.1px 22.2px -16px rgba(0, 0, 0, 0.13),
+      15.9px 17.4px 31.9px -16px rgba(0, 0, 0, 0.117),
+      22.5px 24.6px 45.2px -16px rgba(0, 0, 0, 0.105),
+      31.9px 34.9px 64.1px -16px rgba(0, 0, 0, 0.093),
+      46.4px 50.7px 93.1px -16px rgba(0, 0, 0, 0.08),
+      71.4px 78.2px 143.4px -16px rgba(0, 0, 0, 0.065),
+      127px 139px 255px -16px rgba(0, 0, 0, 0.044)
+    ;
+    
+}
+
+
+
+.MNT-div img{
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+
+}
+
+
+.MNT-div h2{
+    margin-bottom: 2em;
+}
+
+.MNT-div button{
+    display: inline;
+    margin: 0.25em 1em;
+}
+
+.edt-MNT{
+    margin: 2em 0;
+    padding: 2em 0;
+    border-top: 2px dashed #222;
+}
+
+.edt-MNT label{
+display: block;
+}
+
+.edt-MNT input,textarea{
+ margin: 0.5em 0;
+ width: 60%;
+ border-radius: 4px;
+}
+.edt-MNT textarea{
+    line-height: 5em;
+}

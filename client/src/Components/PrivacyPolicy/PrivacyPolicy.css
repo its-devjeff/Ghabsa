@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Privacy policy.
+
+   A long document, so it is set at a reading measure with real spacing
+   between sections rather than the run-together block it replaced.
+   ========================================================================== */
+
+.Policy {
+  max-width: 68ch;
+}
+
+.Policy-updated {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.Policy-lead {
+  margin: 0 0 var(--space-8);
+  font-size: var(--text-lg);
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+/* ---- Contents ------------------------------------------------------------------ */
+
+.Policy-toc {
+  margin-bottom: var(--space-9);
+  padding: var(--space-6);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+}
+
+.Policy-toc ul {
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin: 0;
+  padding: 0;
+}
+
+.Policy-toc a {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+  text-decoration: none;
+}
+
+.Policy-toc a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* ---- Sections ------------------------------------------------------------------- */
+
+.Policy-section {
+  margin-bottom: var(--space-8);
+  /* Anchored links from the contents must clear the fixed masthead. */
+  scroll-margin-top: calc(var(--header-h) + var(--space-6));
+}
+
+.Policy-section:last-child {
+  margin-bottom: 0;
+}
+
+.Policy-title {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-heading);
+}
+
+.Policy-text {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+.Policy-text:last-child {
+  margin-bottom: 0;
+}
+
+.Policy-text a {
+  color: var(--color-primary);
+  font-weight: 600;
+}

@@ -1,0 +1,285 @@
+.dinner-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    height:100%;
+  
+    
+  }
+  .dinner-banner{
+    width:100%;
+    margin:0 auto;
+    height:300px;
+    margin-bottom: 8em;
+  }
+  .dinner-msg{
+    font-size: larger;
+    font-family: 'poppins','lato','sans-serif';
+    color:#333;
+    margin: 1em 0;
+  }
+  .count-down{
+    position: relative;
+    bottom: 32%;
+    color:white;
+    font-size: larger;
+    width:80%;
+    z-index: 1;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1em;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15),
+    0 2px 2px rgba(0, 0, 0, 0.15),
+    0 4px 4px rgba(0, 0, 0, 0.15),
+    0 8px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 7em;
+  }
+  .dinner-banner img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  
+  }
+
+  .dinner-msg span{
+  color:rgb(20,184,66);
+  }
+  .table-dinner-container {
+    display: flex;
+    flex-basis: calc(50% - 1em);
+    height: 200px;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15),
+      0 2px 2px rgba(0, 0, 0, 0.15),
+      0 4px 4px rgba(0, 0, 0, 0.15),
+      0 8px 8px rgba(0, 0, 0, 0.15);
+    margin: 0.5em;
+  }
+
+  .table-dinner-container img{
+    width:95%;
+    height:95%;
+    margin:0.25em;
+    object-fit: cover;
+    
+  }
+  .table-info{
+    justify-content: flex-start;
+    position: relative;
+    width:100%;
+    margin:1em ;
+    flex-wrap: wrap;
+  }
+  .table-name-wrapper{
+    font-weight: 1000;
+    font-family: "Lato","poppins";
+    margin-bottom: 0.5em;
+  }
+  
+  .table-type{
+    font-weight: 600;
+    color:teal;
+  }
+  .table-description{
+    color:#444;
+    font-weight: 550;
+
+  }
+
+.type-name{
+    color:black;
+}
+
+  .reserve-btn {
+    display: inline-block;
+    margin-top: 0.5em;
+    position: relative;
+    padding: 6px 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(20,184,66);
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    transition: background-color 0.3s linear;
+  }
+  
+  .color-tomato{
+    color:tomato;
+  }
+
+  
+  @media (max-width: 767px) {
+    .table-dinner-container {
+      flex-basis: calc(100% - 1em);
+    }
+    .dinner-banner{
+      width:100%;
+      margin:0.25em auto;
+      height:300px;
+      margin-bottom: 26em;
+    }
+    .dinner-msg{
+      font-size:1em;
+    }
+  }
+  
+  .tb-code{
+    color:teal;
+  }
+  
+  .glass-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    background-color: #ffffff;
+    padding:0.25em;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .glass-icon:hover {
+    background-color: #ffc107;
+    
+  }
+  
+
+  
+  .glass-icon:hover .people-list {
+    display: block;
+  }
+  
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90%;
+    max-height: 90%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15),
+    0 2px 2px rgba(0, 0, 0, 0.15),
+    0 4px 4px rgba(0, 0, 0, 0.15),
+    0 8px 8px rgba(0, 0, 0, 0.15);
+  margin: 0.5em;
+    z-index: 9999;
+    overflow: auto;
+  }
+  
+  .modal-content {
+    padding: 20px;
+  }
+  
+  .modal h2 {
+    margin-top: 0;
+  }
+  
+  .modal form {
+    margin-top: 20px;
+  }
+  
+  .modal label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .modal input[type="text"],
+  .modal input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .modal button {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .modal button[type="submit"] {
+    background-color: #4caf50;
+  }
+  
+  .modal button[type="button"] {
+    background-color: #ccc;
+  }
+  
+  .modal button[type="submit"]:hover,
+  .modal button[type="button"]:hover {
+    background-color: #45a049;
+  }
+  
+  .modal button + button {
+    margin-left: 8px;
+  }
+  .close-button-times{
+    position: absolute;
+    right: 0;
+    margin-right: 0.25em;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: tomato;
+    }
+    .guest-list-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* ensure the modal appears on top of other elements */
+    }
+    
+    .guest-list-modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 400px;
+      width: 100%;
+    }
+    
+    .guest-list-modal-close {
+      position: absolute;
+      background: white;
+      color: tomato;
+      padding: 0.25em 0.5em;
+      border-radius: 50%;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    
+    .guest-list-modal h3 {
+      margin-top: 0;
+    }
+    
+    .guest-list-modal ul {
+      padding: 0;
+      list-style-type: none;
+    }
+    
+    .guest-list-modal ul li {
+      margin-bottom: 10px;
+    }
+    

@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Quick links — the wayfinding row directly beneath the hero.
+   Carried on a brand-blue band so the page gets a strong colour beat early
+   without the hero itself going dark.
+   ========================================================================== */
+
+.QuickLinks {
+  background-color: var(--color-primary);
+}
+
+.QuickLinks-grid {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-2) var(--container-pad);
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+  list-style: none;
+}
+
+.QuickLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-5) var(--space-4);
+  border-radius: var(--radius-lg);
+  color: var(--white);
+  text-decoration: none;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.QuickLink:hover {
+  background-color: rgba(255, 255, 255, 0.10);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.QuickLink__icon {
+  /* Bare stroked mark — no tile, no fill behind it. */
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  color: var(--gold-300);
+  transition: color var(--transition);
+}
+
+.QuickLink:hover .QuickLink__icon {
+  color: var(--color-accent);
+}
+
+.QuickLink__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.QuickLink__label {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--white);
+}
+
+.QuickLink__body {
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (min-width: 560px) {
+  .QuickLinks-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .QuickLinks-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Gallery — "Life at GHABSA".
+   A mixed-size photo wall: some tiles run tall, some wide, so the grid has
+   rhythm instead of reading as a uniform contact sheet.
+   ========================================================================== */
+
+.Gallery {
+  padding-block: var(--section-y);
+  background-color: var(--panel-dark);
+}
+
+/* ---- Header -------------------------------------------------------------- */
+
+.Gallery-head {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  margin-bottom: var(--space-7);
+}
+
+.Gallery-eyebrow {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  color: var(--gold-400);
+}
+
+.Gallery-title {
+  margin: var(--space-2) 0 0;
+  font-size: var(--display-2);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+.Gallery-lead {
+  margin: var(--space-3) 0 0;
+  max-width: 46ch;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--panel-dark-text);
+}
+
+/* ---- Grid ---------------------------------------------------------------- */
+
+.Gallery-grid {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 11rem;
+  list-style: none;
+}
+
+.Gallery-item {
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--panel-dark-fill);
+}
+
+.Gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out-expo);
+}
+
+.Gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Tiles that break the uniform grid. */
+.Gallery-item--tall {
+  grid-row: span 2;
+}
+
+@media (min-width: 700px) {
+  .Gallery-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 12rem;
+  }
+
+  .Gallery-item--wide {
+    grid-column: span 2;
+  }
+}

@@ -1,0 +1,224 @@
+/* ==========================================================================
+   Sign up. The old sheet scoped most of its rules to `.S-right-container`,
+   a class the markup never renders, so the progress bar and step styles
+   never applied and the defaults ran wild: a 400px logo, a display-sized
+   heading and inputs three lines tall. Everything here is scoped to the
+   classes that actually exist, on the GHABSA palette.
+   ========================================================================== */
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--space-9) var(--container-pad);
+  background-color: var(--color-bg-alt);
+}
+
+.s-logo {
+  width: auto;
+  height: 4.5rem;
+  margin-bottom: var(--space-6);
+  object-fit: contain;
+}
+
+/* ---- Card -------------------------------------------------------------------- */
+
+.S-right {
+  width: 100%;
+  max-width: 32rem;
+  padding: var(--space-8);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.S-right .form {
+  display: flex;
+  flex-direction: column;
+}
+
+.S-right .text-center {
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-transform: none;
+  color: var(--color-heading);
+}
+
+/* ---- Progress ----------------------------------------------------------------
+   A row of segments that fill as the applicant moves through the steps. */
+
+.S-right .Progressbar {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-7);
+}
+
+.S-right .progress-step {
+  flex: 1 1 0;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background-color: var(--ink-200);
+  transition: background-color 240ms ease;
+}
+
+.S-right .progress-step-active {
+  background-color: var(--color-primary);
+}
+
+/* ---- Fields ------------------------------------------------------------------- */
+
+.S-right .form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.S-right .input-group,
+.S-right .input-group-a {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.S-right label {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.S-right input,
+.S-right select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.S-right input::placeholder {
+  color: var(--ink-400);
+}
+
+.S-right input:focus,
+.S-right select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--brand-100);
+}
+
+/* ---- Buttons ------------------------------------------------------------------ */
+
+.S-right .btns-group {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+.S-right .btn,
+.S-right .btn-next {
+  flex: 1 1 auto;
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.S-right .btn:hover,
+.S-right .btn-next:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--white);
+}
+
+/* Back is the quieter of the pair. */
+.S-right .btn-prev {
+  flex: 0 0 auto;
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.S-right .btn-prev:hover {
+  background-color: var(--ink-100);
+  border-color: var(--ink-300);
+  color: var(--color-heading);
+}
+
+/* ---- Messages ------------------------------------------------------------------ */
+
+.error,
+.error-message {
+  margin-bottom: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  background-color: #fdecea;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: #a12b21;
+}
+
+.error-message p {
+  margin: 0 0 var(--space-1, 4px);
+}
+
+.error-message p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Success ------------------------------------------------------------------- */
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  text-align: center;
+}
+
+.success-text {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.circle-background {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 2;
+}
+
+.checkmark {
+  stroke: var(--color-primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 575px) {
+  .main-container {
+    padding: var(--space-7) var(--space-4);
+  }
+
+  .S-right {
+    padding: var(--space-6);
+  }
+
+  .S-right .btns-group {
+    flex-direction: column-reverse;
+  }
+}

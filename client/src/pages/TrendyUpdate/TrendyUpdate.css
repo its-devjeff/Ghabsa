@@ -1,0 +1,66 @@
+
+.TrendyForm{
+position: relative;
+}
+.writeTrendImg{
+    margin-left: 150px;
+    width:70vw;
+    height: 250px;
+    border-radius:8px ;
+    object-fit: cover;
+}
+.writeFormGroup{
+    margin-left:150px;
+    display: flex;
+    align-items: center;
+
+}
+.writeicon{
+    width:25px;
+    height:25px;
+    border-radius:50% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:1px solid #000;
+    cursor: pointer;
+}
+.writeTrendyTitle{
+    font-size: 30px;
+    border:none;
+    padding: 20px;
+    width: 70vw;
+}
+
+.writeTrendyTitle:focus{
+    outline:none;
+}
+
+.Trendy-img-set{
+    height:280px;
+    width: 80%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.writeTrend-q{
+    text-align: center;
+}
+.writeTrend-q h2{
+ margin-bottom: 1em;
+}
+.writeSubmit{
+    position: absolute;
+    top:20px;
+    right:50px;
+    color:#fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius:8px;
+    background-color: #CEAD36;
+    border:none;
+}
+.writeSubmit:hover{
+    background-color: #fff;
+    color:#CEAD36;
+    border:1px solid #000;
+}

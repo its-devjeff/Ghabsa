@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Site footer.
+   NOTE: this file used to open with a global `* { margin:0; padding:0 }`
+   reset. Because CRA bundles every stylesheet together, that silently wiped
+   spacing across the whole application. The reset now lives once, in
+   styles/theme.css.
+   ========================================================================== */
+
+.Footer-container {
+  position: relative;
+  margin-top: 0;
+  padding-block: var(--section-y);
+  background-color: var(--brand-700);
+  color: var(--white);
+  z-index: 0;
+}
+
+.footer-wrapper {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.footer-wrapper .row {
+  display: grid;
+  gap: var(--space-7) var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+}
+
+/* ---- Column ------------------------------------------------------------- */
+
+.footer-col {
+  width: auto;
+  padding: 0;
+  min-width: 0;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col h4 {
+  position: relative;
+  margin: 0 0 var(--space-6);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--white);
+}
+
+.footer-col h4::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.625rem;
+  width: 2.75rem;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent);
+}
+
+.footer-col ul li:not(:last-child) {
+  margin-bottom: var(--space-3);
+}
+
+.footer-col ul li a {
+  display: block;
+  /* Raised from #bbb, which failed contrast on the blue ground. */
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  text-transform: capitalize;
+  text-decoration: none;
+  transition: color var(--transition), padding-left var(--transition);
+}
+
+.footer-col ul li a:hover {
+  color: var(--white);
+  padding-left: var(--space-2);
+}
+
+/* Copyright line is static text, not a link. */
+.footer-col ul li {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.footer-col .footer-copy {
+  color: rgba(255, 255, 255, 0.62);
+  text-transform: none;
+}
+
+/* ---- Social ------------------------------------------------------------- */
+
+.footer-col .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.footer-col .social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin: 0;
+  line-height: 1;
+  background-color: rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  color: var(--white);
+  text-align: center;
+  transition: background-color var(--transition), color var(--transition),
+              transform var(--transition);
+}
+
+.footer-col .social-links a:hover {
+  background-color: var(--color-accent);
+  color: var(--ink-900);
+  transform: translateY(-2px);
+  padding-left: 0;
+}

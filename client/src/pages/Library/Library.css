@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Library. The search panel used to be an 80%-wide floating card holding a
+   65vw input, centred independently of the results below it, so the two
+   halves of the page never lined up. Everything is one column now.
+   ========================================================================== */
+
+.Library-container {
+  width: 100%;
+}
+
+.Library-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ---- Search ------------------------------------------------------------------ */
+
+.Search-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  margin: 0 0 var(--space-8);
+  padding: var(--space-6);
+  background-color: var(--color-bg-alt);
+  border: none;
+  border-radius: var(--radius-xl);
+  box-shadow: none;
+}
+
+.Search-wrapper {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  background-color: transparent;
+}
+
+.search-custom {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  padding: 0;
+}
+
+.search-custom input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.search-custom input::placeholder {
+  color: var(--ink-400);
+}
+
+.search-custom input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--brand-100);
+}
+
+.cs-search {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  width: auto;
+  height: auto;
+  padding: 0 var(--space-5);
+  background-color: var(--color-primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.cs-search:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* ---- Filter -------------------------------------------------------------------- */
+
+.Search-form-filter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.Search-form-filter label {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+#searchBy {
+  width: auto;
+  height: auto;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+/* ---- Results --------------------------------------------------------------------- */
+
+.Result {
+  width: auto;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.Result h1,
+.Result h2 {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-heading);
+}
+
+.Result > p {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--ink-500);
+}
+
+.result-item {
+  width: 100%;
+  margin: 0;
+  background-color: transparent;
+}
+
+.result-item-container {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  margin: 0 0 var(--space-2);
+  padding: var(--space-3);
+  background-color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  transition: background-color 180ms ease;
+}
+
+.result-item-container:hover {
+  background-color: var(--color-bg-alt);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.result-item-container img {
+  flex: 0 0 auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  background-color: var(--ink-100);
+}
+
+.result-item-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-5);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.result-item-flex p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink-500);
+}
+
+.result-item-flex p:first-child {
+  width: 100%;
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.btn-none {
+  flex: 0 0 auto;
+  padding: var(--space-2);
+  background-color: transparent;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.btn-download {
+  height: 1.25rem;
+  margin: 0;
+}
+
+/* Decorative blobs that floated across the search panel. */
+.shape-bg {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .Search-form {
+    padding: var(--space-5);
+  }
+
+  .result-item-container {
+    align-items: flex-start;
+  }
+}
+
+/* ---- Search states ---------------------------------------------------------------
+   The page used to render "No results found" on load, before anything had
+   been asked for. */
+
+.Library-count {
+  margin: 0 0 var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--ink-500);
+}
+
+.Library-count strong {
+  color: var(--color-heading);
+}
+
+.Library-state {
+  max-width: 46ch;
+  padding: var(--space-6) 0;
+}
+
+.Library-state-title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.Library-state-note {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}

@@ -1,0 +1,74 @@
+
+.page{
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    color: black;
+}
+.title{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5em;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    height: 90%;
+    padding: 3em;
+    backdrop-filter: blur(6px);
+    border: none;
+    border-radius: 32px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15), 
+    0 2px 2px rgba(0,0,0,0.15), 
+    0 4px 4px rgba(0,0,0,0.15), 
+    0 8px 8px rgba(0,0,0,0.15);
+  
+  
+;
+}
+.label{
+    width: 100%;
+    height: 3.75em;
+    padding: 0.75em;
+    border-radius: 13px;
+    border: none;
+    margin-bottom: 1.5em;
+    display: flex;
+    flex-direction: row;
+}
+.upload{
+width: 80%;
+height: 3em;
+padding: 0.25em;
+border: none;
+padding-left: 3em;
+}
+#level, #category{
+    margin-left: 1.5em;
+    padding: 0.5em;
+}
+.input-field{
+    width: 80%;
+    height: 2.75em;
+    margin-left: 1em;
+}
+.btn-submit{
+    height: 3em;
+    width: 30%;
+    border: 1px solid white;
+    border-radius: 16px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0,.95,1,-0.01);
+
+}
+.btn-submit:hover{
+    color: white;
+}

@@ -1,0 +1,122 @@
+/* ==========================================================================
+   FAQ accordions.
+
+   This file was empty: the accordions were picking up CourseTable.css, which
+   sets a 13px card, a 14px title and a 50%-wide container, so the whole thing
+   rendered as a column of tiny grey strips. These rules are scoped to the FAQ
+   page so CourseTable keeps whatever it had.
+   ========================================================================== */
+
+.Faqs .container-fluid,
+.Faqs .card-row,
+.Faqs .col-md-8 {
+  display: block;
+  top: auto;
+  width: 100%;
+  height: auto;
+  padding: 0;
+}
+
+.Faqs .course-card {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.Faqs .course-card-body {
+  padding: 0;
+}
+
+/* ---- Item -------------------------------------------------------------------- */
+
+.Faqs .rc-accordion-card {
+  margin-bottom: var(--space-3);
+  padding: 0;
+  background-color: var(--color-bg-alt);
+  border: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.Faqs .rc-accordion-card:last-child {
+  margin-bottom: 0;
+}
+
+/* ---- Question ----------------------------------------------------------------- */
+
+.Faqs .rc-accordion-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.Faqs .rc-accordion-toggle:hover {
+  background-color: var(--brand-100);
+}
+
+.Faqs .rc-accordion-toggle.active {
+  background-color: var(--brand-100);
+}
+
+.Faqs .rc-accordion-title {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-heading);
+  transition: color 180ms ease;
+}
+
+.Faqs .rc-accordion-toggle.active .rc-accordion-title {
+  color: var(--brand-700);
+}
+
+.Faqs .rc-accordion-icon {
+  flex: 0 0 auto;
+  top: auto;
+  font-size: var(--text-sm);
+  color: var(--ink-400);
+  transition: transform 300ms ease, color 180ms ease;
+}
+
+.Faqs .rc-accordion-toggle.active .rc-accordion-icon {
+  transform: rotate(180deg);
+  color: var(--brand-700);
+}
+
+/* ---- Answer -------------------------------------------------------------------- */
+
+.Faqs .rc-accordion-body {
+  padding: 0 var(--space-6) var(--space-6);
+}
+
+.Faqs .rc-accordion-body p {
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+}
+
+/* The height is animated inline from the content's scrollHeight. */
+.Faqs .rc-collapse {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height 300ms ease;
+}

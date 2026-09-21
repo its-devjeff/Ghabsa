@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Login. Previously a rounded, shadowed card floated inside the viewport with
+   absolutely positioned halves. It is now a full-bleed split: photograph on
+   one side, form on the other, square to every edge.
+   ========================================================================== */
+
+.login-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--color-surface);
+}
+
+/* ---- Photograph ------------------------------------------------------------- */
+
+.l-left-container {
+  display: none;
+  position: relative;
+  background-color: var(--ink-100);
+}
+
+.l-left-container > div,
+.l-left-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.l-left-container img {
+  display: block;
+  object-fit: cover;
+}
+
+/* ---- Form side --------------------------------------------------------------- */
+
+.l-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-9) var(--space-6);
+}
+
+.l-right-container img {
+  width: auto;
+  max-width: 11rem;
+  height: auto;
+  margin-bottom: var(--space-4);
+  object-fit: contain;
+}
+
+.l-right-container h2 {
+  margin: 0 0 var(--space-7);
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-heading);
+}
+
+.loading-animation-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Inside the form column the loader should not claim the whole viewport. */
+.l-right-container .loading-animation-container {
+  min-height: 12rem;
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .l-left-container {
+    display: block;
+  }
+}

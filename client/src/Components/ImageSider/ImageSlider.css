@@ -1,0 +1,14 @@
+.image-slider {
+    position: relative;
+  }
+  
+  .image-slider img {
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .image-slider img.active {
+    opacity: 1;
+  }
+  

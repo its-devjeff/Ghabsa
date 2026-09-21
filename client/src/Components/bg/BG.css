@@ -1,0 +1,214 @@
+/* ==========================================================================
+   Hero — light, structured, institutional.
+   Copy on a clean ground at left; rotating photography framed at right.
+   Energy comes from colour, scale and space rather than a dark treatment.
+   ========================================================================== */
+
+.BG-container {
+  position: relative;
+  /* Soft brand tint keeps the band from reading as plain white without
+     turning it into a heavy colour block. */
+  background:
+    radial-gradient(70% 100% at 100% 0%, var(--brand-050) 0%, transparent 62%),
+    radial-gradient(55% 90% at 0% 100%, var(--gold-100) 0%, transparent 58%),
+    var(--color-bg);
+  padding-block: var(--space-9) var(--space-8);
+  overflow: hidden;
+}
+
+.BG-wrapper {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+/* ---- Copy --------------------------------------------------------------- */
+
+.BG-T-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+
+.Sub {
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  color: var(--color-heading);
+}
+
+.gh-accent-word {
+  color: var(--color-primary);
+}
+
+.BG-lead {
+  margin: var(--space-5) 0 0;
+  max-width: 44ch;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-muted);
+}
+
+.BG-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+/* ---- Pillars ------------------------------------------------------------
+   Set apart by space and colour alone — no rule, no boxes. */
+
+.BG-pillars {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+  width: 100%;
+  margin: var(--space-8) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.BG-pillar {
+  min-width: 0;
+}
+
+.BG-pillars .BG-pillar__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.BG-pillar__body {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-muted);
+}
+
+/* ---- Figure -------------------------------------------------------------- */
+
+.BG-figure {
+  position: relative;
+  min-width: 0;
+}
+
+.BG-figure__frame {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
+}
+
+/* ---- Entrance ------------------------------------------------------------
+   Plays on load, not via the scroll observer: this is above the fold and
+   must never be left invisible. */
+
+.BG-T-container > *,
+.BG-figure {
+  animation: BG-enter 800ms var(--ease-out-expo) backwards;
+}
+
+.BG-T-container > *:nth-child(1) { animation-delay: 60ms; }
+.BG-T-container > *:nth-child(2) { animation-delay: 130ms; }
+.BG-T-container > *:nth-child(3) { animation-delay: 200ms; }
+.BG-T-container > *:nth-child(4) { animation-delay: 270ms; }
+.BG-T-container > *:nth-child(5) { animation-delay: 340ms; }
+.BG-figure { animation-delay: 160ms; }
+
+@keyframes BG-enter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---- Breakpoints --------------------------------------------------------- */
+
+@media (min-width: 620px) {
+  .BG-pillars {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 992px) {
+  .BG-wrapper {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-9);
+    /* Photo fills the full height of the copy column rather than floating
+       in the middle of it with dead space below. */
+    align-items: stretch;
+  }
+
+  /* The frame is taken out of flow so the photograph cannot drive the row
+     height — the copy column sets it, and the frame fills exactly that. */
+  .BG-figure {
+    align-self: stretch;
+  }
+
+  .BG-figure__frame {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Complete the carousel's height chain so the image can fill the frame. */
+  .BG-figure__frame .CarouselSlider,
+  .BG-figure__frame .Carousel-container-div,
+  .BG-figure__frame .carousel-container-div,
+  .BG-figure__frame .carousel,
+  .BG-figure__frame .inner,
+  .BG-figure__frame .carousel-slider-item {
+    height: 100%;
+  }
+
+  .BG-figure__frame .carousel-img {
+    height: 100%;
+    min-height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+}
+
+/* On laptop-width screens the photograph takes the larger share. The hero
+   display size is capped a little below --display-1 to pay for it, so
+   "Sustaining" still sits on one line in the narrower copy column. */
+@media (min-width: 1200px) {
+  .BG-wrapper {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .BG-wrapper .Sub {
+    font-size: clamp(3.25rem, 1.9rem + 3.4vw, 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .BG-T-container > *,
+  .BG-figure {
+    animation: none;
+  }
+}
+
+/* ---- Hero action buttons -------------------------------------------------
+   Deliberately non-uniform corners, scoped to the hero so the shared .gh-btn
+   radius elsewhere on the site is untouched.
+   Primary: square top-left, 2rem bottom-left, square right side.
+   Ghost:   square all round. */
+
+.BG-actions .gh-btn--primary {
+  border-radius: 0;
+  border-end-start-radius: 2rem;
+}
+
+.BG-actions .gh-btn--ghost {
+  border-radius: 0;
+}

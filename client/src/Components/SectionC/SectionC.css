@@ -1,0 +1,278 @@
+/* ==========================================================================
+   Section C — latest posts carousel.
+   Rebuilt: the old version absolutely positioned .card-body over the image
+   and grew it on hover, which clipped every title. Cards are now a normal
+   image / body / footer stack that sizes to its content.
+   ========================================================================== */
+
+.SectionC-carousel-container {
+  position: relative;
+  background-color: var(--color-bg-alt);
+  padding-block: var(--section-y);
+}
+
+.SectionC-carousel-items,
+.loading-cards {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 0 var(--container-pad);
+  display: grid;
+  gap: var(--space-5);
+  /* 4 up on desktop, 2 on tablet, 1 on phone — no breakpoint juggling. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  align-items: stretch;
+  overflow: visible;
+}
+
+/* ---- Card --------------------------------------------------------------- */
+
+.SectionC-carousel-items .card,
+.SectionC-carousel-items .carousel-item {
+  position: relative;
+  width: auto;
+  height: auto;
+  margin: 0;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+  transition: transform 450ms var(--ease-out-expo),
+              box-shadow 450ms var(--ease-out-expo);
+}
+
+.SectionC-carousel-items .card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-deep);
+}
+
+/* The <Link> wraps the whole card and is the real flex column. */
+.SectionC-carousel-items .card > a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.SectionC-carousel-items .card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 0;
+  background-color: var(--ink-100);
+  transition: transform 900ms var(--ease-out-expo);
+}
+
+.SectionC-carousel-items .card:hover img {
+  opacity: 1;
+  transform: scale(1.07);
+}
+
+/* ---- Body --------------------------------------------------------------- */
+
+.SectionC-carousel-items .card-body {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: auto;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  background-color: var(--color-surface);
+  font-size: var(--text-base);
+  overflow: hidden;
+}
+
+.SectionC-carousel-items .card-title {
+  display: block;
+  position: static;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  color: var(--color-heading);
+  text-align: left;
+  text-transform: capitalize;
+  /* Two lines max keeps every card the same height. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Excerpt is always visible now rather than revealed on hover. */
+.SectionC-carousel-items .card-body p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  text-align: left;
+  visibility: visible;
+  opacity: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.SectionC-carousel-items .card-body:hover {
+  position: static;
+  height: auto;
+  max-height: none;
+  bottom: auto;
+}
+
+/* ---- Footer link -------------------------------------------------------- */
+
+.Read-more {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: 0;
+  margin-top: auto;
+  padding: 0 var(--space-5) var(--space-5);
+  background-color: transparent;
+  border-radius: 0;
+  color: var(--color-primary);
+  text-align: left;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.SectionC-carousel-items .card:hover .Read-more {
+  color: var(--color-primary-hover);
+}
+
+.card .Read-more h5 {
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  color: inherit;
+}
+
+.Read-more svg {
+  font-size: var(--text-xs);
+  transition: transform var(--transition);
+}
+
+.SectionC-carousel-items .card:hover .Read-more svg {
+  transform: translateX(3px);
+}
+
+/* ---- Navigation arrows -------------------------------------------------- */
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: var(--space-2);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.carousel-nav .round-btn {
+  pointer-events: auto;
+}
+
+.carousel-nav button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  font-size: var(--text-2xl);
+  cursor: pointer;
+}
+
+.SlidePrev,
+.SlideNext {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.SlidePrev:hover,
+.SlideNext:hover {
+  height: 2.25rem;
+  width: 2.25rem;
+  background-color: var(--color-primary);
+  color: var(--white);
+}
+
+/* ---- Loading skeletons -------------------------------------------------- */
+
+.loading-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+}
+
+.loading-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: var(--ink-100);
+  animation: sectionc-pulse 1.4s ease-in-out infinite;
+}
+
+.loading-text {
+  height: 1rem;
+  margin: var(--space-4);
+  border-radius: var(--radius-sm);
+  background-color: var(--ink-100);
+  animation: sectionc-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes sectionc-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* Arrows would overlap the single-column layout on phones. */
+@media (max-width: 767px) {
+  .carousel-nav {
+    display: none;
+  }
+}
+
+/* ---- Misc (used elsewhere in the app) ----------------------------------- */
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  margin-left: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--ink-900);
+  color: var(--white);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.menu-item {
+  position: relative;
+}
+
+.menu-item:hover .tooltip {
+  display: block;
+}

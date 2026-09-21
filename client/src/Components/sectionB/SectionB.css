@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Section B — calendar / events / news cards.
+   Auto-fit grid: 3 up on desktop, 2 on tablet, 1 on phone, with no
+   per-breakpoint column rules.
+   ========================================================================== */
+
+.SectionB-card-container {
+  background-color: var(--color-bg);
+  padding-block: var(--section-y);
+}
+
+.SectionB-card-items {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 0 var(--container-pad);
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: stretch;
+}
+
+/* ---- Card --------------------------------------------------------------- */
+
+.SectionB-card-items .card {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  /* Height comes from content, with a floor so the three columns align. */
+  height: auto;
+  min-height: 21rem;
+  padding: 0;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+  transition: transform 450ms var(--ease-out-expo),
+              box-shadow 450ms var(--ease-out-expo);
+}
+
+.SectionB-card-items .card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-deep);
+}
+
+.SectionB-card-items .card-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-3);
+  height: auto;
+  padding: var(--space-5) var(--space-5) var(--space-2);
+  margin-bottom: 0;
+  background-color: var(--color-surface);
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.card-header h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+  text-align: left;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-heading);
+  overflow: visible;
+}
+
+/* Icon sits on a soft brand tile — colour, not an outline, sets it apart. */
+.card-header h2 svg {
+  flex-shrink: 0;
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  background-color: var(--brand-050);
+  color: var(--color-primary);
+  font-size: 0.85em;
+}
+
+/* ---- Card body ---------------------------------------------------------- */
+
+.SectionB-card-items .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: auto;
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.card-body ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.card-body ul li {
+  list-style: none;
+  display: block;
+  height: auto;
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--ink-050);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: var(--leading-snug);
+  overflow: hidden;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+/* Replaces the old scale() hover, which clipped inside the card. */
+.card-body li:hover {
+  cursor: pointer;
+  background-color: var(--brand-100);
+  transform: none;
+}
+
+.card-body ul li a,
+.color-black {
+  color: var(--color-text);
+  display: block;
+}
+
+.card-body ul li:hover a {
+  color: var(--color-primary);
+}
+
+/* Empty state — keeps the card from looking broken with no data. */
+.card-body ul:empty::after {
+  content: 'Nothing scheduled yet.';
+  display: block;
+  padding: var(--space-4);
+  color: var(--ink-400);
+  font-size: var(--text-sm);
+  font-style: italic;
+}

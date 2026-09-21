@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Back-to-top button.
+   Was a percentage-width circle whose padding pushed the arrow out of view;
+   now a fixed-size button anchored to the viewport corner.
+   ========================================================================== */
+
+.goTopHidden {
+  display: none;
+}
+
+.goTop {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 4vh, 2.5rem);
+  z-index: var(--z-overlay);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+
+  background-color: var(--color-primary);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+
+  font-size: var(--text-base);
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.goTop:hover {
+  background-color: var(--brand-700);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.goTop svg {
+  display: block;
+}

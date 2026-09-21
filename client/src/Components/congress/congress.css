@@ -1,0 +1,63 @@
+/* ==========================================================================
+   GHABSA Annual Congress. Prose lives in PageShell.css.
+   ========================================================================== */
+
+.Congress-universities {
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.Congress-university {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+}
+
+.Congress-university-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.Congress-university-city {
+  flex: 0 0 auto;
+  font-size: var(--text-sm);
+  color: var(--ink-500);
+}
+
+/* ---- Reasons --------------------------------------------------------------- */
+
+.Congress-reasons {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.Congress-reason {
+  padding: var(--space-5);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.Congress-reason h3 {
+  margin-top: 0;
+}
+
+.Congress-reason p {
+  margin-bottom: 0;
+}
+
+@media (min-width: 700px) {
+  .Congress-reasons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

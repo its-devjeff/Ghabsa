@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Container A — typewriter strapline.
+   ========================================================================== */
+
+.ContainerA-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding-block: var(--section-y);
+  padding-inline: var(--container-pad);
+}
+
+.ContainerA-wrapper {
+  width: 100%;
+  /* Was a fixed 1027px, which forced horizontal scroll on small screens. */
+  max-width: var(--container-max);
+  height: auto;
+  padding: 0;
+  text-align: center;
+}
+
+.ContainerA-wrapper h4 {
+  margin: 0 0 var(--space-3);
+  text-align: center;
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.ContainerA-wrapper a {
+  text-decoration: none;
+}
+
+.highlight-exception {
+  color: var(--gold-600);
+  margin-left: 0.35em;
+}
+
+/* ---- Typewriter --------------------------------------------------------- */
+
+.text-type {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--color-primary);
+  text-align: center;
+  width: 0;
+  animation: typing 4.5s steps(25, end) infinite, blinking 1s infinite;
+}
+
+@keyframes typing {
+  0%   { width: 0 }
+  50%  { width: 83% }
+}
+
+@keyframes blinking {
+  0%   { border-color: transparent }
+  50%  { border-color: var(--color-primary) }
+  100% { border-color: transparent }
+}
+
+@media (max-width: 767px) {
+  .text-type {
+    font-size: var(--text-base);
+    /* Typing animation truncates long text on narrow screens — show it whole. */
+    width: auto;
+    white-space: normal;
+    border-right: none;
+    animation: none;
+  }
+}

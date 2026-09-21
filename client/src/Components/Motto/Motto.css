@@ -1,0 +1,88 @@
+/* ==========================================================================
+   "For you" — shortcut panel.
+   A pale surface rather than a dark one, so the panel reads as a quiet shelf
+   of shortcuts between the louder sections around it. The chips are a light
+   brand tint with dark blue text, deepening a step on hover.
+   ========================================================================== */
+
+.m-div {
+  width: calc(100% - (2 * var(--container-pad)));
+  max-width: var(--container-max);
+  margin: 0 auto var(--section-y);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-xl);
+}
+
+.m-div h2 {
+  margin: 0 0 var(--space-5);
+  padding: 0;
+  color: var(--color-heading);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+}
+
+/* ---- Chips -------------------------------------------------------------- */
+
+.motto-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: var(--space-3);
+  width: 100%;
+  margin: 0;
+}
+
+.motto-div .m-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  background-color: var(--brand-100);
+  border: none;
+  border-radius: var(--radius-md);
+  outline: none;
+  box-shadow: none;
+  text-align: center;
+  transition: background-color var(--transition), box-shadow var(--transition),
+              transform var(--transition);
+}
+
+.motto-div .m-card a {
+  display: block;
+  padding: var(--space-3) var(--space-5);
+  color: var(--brand-700);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.motto-div .m-card:hover {
+  background-color: var(--brand-200);
+  box-shadow: none;
+  transform: translateY(-2px);
+}
+
+.motto-div span {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+}
+
+@media (max-width: 640px) {
+  .motto-div {
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .motto-div .m-card {
+    flex: 1 1 auto;
+    margin: 0;
+  }
+
+  .motto-div .m-card a {
+    padding: var(--space-3) var(--space-4);
+  }
+}

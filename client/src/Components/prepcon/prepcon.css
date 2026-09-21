@@ -1,0 +1,79 @@
+/* ==========================================================================
+   Prepcon. Prose lives in PageShell.css; only the page's own blocks are here.
+   ========================================================================== */
+
+.Prepcon-campuses {
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.Prepcon-campus {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+}
+
+.Prepcon-campus-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+.Prepcon-campus-halls {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--ink-500);
+}
+
+/* ---- Rounds ---------------------------------------------------------------- */
+
+.Prepcon-rounds {
+  counter-reset: prepcon-round;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.Prepcon-rounds li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.Prepcon-rounds li::before {
+  counter-increment: prepcon-round;
+  content: counter(prepcon-round);
+  flex: 0 0 auto;
+  min-width: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ---- Benefits -------------------------------------------------------------- */
+
+.Prepcon-benefits {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.Prepcon-benefit h3 {
+  margin-top: 0;
+}
+
+@media (min-width: 700px) {
+  .Prepcon-campuses {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
