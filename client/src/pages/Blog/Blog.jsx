@@ -3,7 +3,7 @@ import './Blog.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const IMG_URL = 'http://localhost:5001/uploads/';
+const IMG_URL = '/uploads/';
 
 /* The blog index. This component is rendered both at /Blog and inside the
    dashboard, so it deliberately brings no header or footer of its own; the

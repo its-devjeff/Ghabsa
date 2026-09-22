@@ -103,7 +103,7 @@ const FileSearch = () => {
       });
   };
 
-  const img_url = "http://localhost:5001/";
+  const img_url = "/";
 
   return (
     <div className="Library-container">

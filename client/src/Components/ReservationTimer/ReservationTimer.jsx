@@ -71,7 +71,7 @@ const ReservationTimer = () => {
     <div>
       {timers.map((timer) => (
         <div key={timer._id}>
-          <img src={`http://localhost:5001/${timer.imagePath}`} alt="Timer" />
+          <img src={`/${timer.imagePath}`} alt="Timer" />
           <p>Countdown Date: {timer.countdownDate}</p>
           <button>Edit</button> {/* Add your edit logic here */}
           <button onClick={() => handleDeleteTimer(timer._id)}>Delete</button>

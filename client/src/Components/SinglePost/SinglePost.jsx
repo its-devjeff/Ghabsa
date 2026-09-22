@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import PageShell from '../PageShell/PageShell';
 
-const IMG_URL = 'http://localhost:5001/uploads/';
+const IMG_URL = '/uploads/';
 
 /* Post bodies are stored as plain text: blank lines separate blocks, and a
    short block with no closing punctuation is a section heading rather than a

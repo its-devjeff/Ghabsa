@@ -242,8 +242,8 @@ const Reservation = () => {
   
   
  
-  const image_url = "http://localhost:5001/Dinner/";
-  const dinner_banner='http://localhost:5001/'
+  const image_url = "/Dinner/";
+  const dinner_banner='/'
 
   return (
     <>
