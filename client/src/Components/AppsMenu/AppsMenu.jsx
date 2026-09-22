@@ -8,7 +8,7 @@ const APPS = [
   {
     name: 'Intern Buddy',
     blurb: 'Internship placements and applications',
-    href: 'https://intern-buddy-five.vercel.app/',
+    href: 'https://intern-buddy.ghabsa.com/',
     // No brand mark for this one yet: its favicon is still the stock Create
     // React App logo. Drop a file in and set `thumb` when there is one.
     initials: 'IB',
