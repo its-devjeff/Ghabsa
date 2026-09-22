@@ -133,6 +133,20 @@ deploy_client() {
     CI=false GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true npm run build
     [ -f build/index.html ] || die "build produced no build/index.html"
 
+    # Cache-bust the files CRA doesn't content-hash: stamp each reference with a short hash of the
+    # file itself, so browsers keep their cached copy exactly until the file changes. The manifest's
+    # icon refs go first, so an icon change also changes the manifest's own hash. Must run before
+    # the gzip step, or index.html.gz would keep the unstamped links.
+    stamp() { shasum -a 256 "build/$1" | cut -c1-8; }
+    sub()   { sed "$1" "$2" > "$2.tmp" && mv "$2.tmp" "$2"; }
+    for f in favicon.ico logo192.png logo512.png; do
+      sub "s#\"$f\"#\"$f?v=$(stamp "$f")\"#g" build/manifest.json
+    done
+    for f in favicon.ico logo192.png manifest.json; do
+      sub "s#href=\"/$f\"#href=\"/$f?v=$(stamp "$f")\"#g" build/index.html
+    done
+    grep -q 'favicon\.ico?v=' build/index.html || die "icon cache-bust stamp did not apply to build/index.html"
+
     # The site ships ~56MB of camera-original photos. A resized WebP sibling of each, served by
     # Nginx content negotiation, cuts that to a fraction with no URL/code changes (originals stay the
     # fallback). Pillow lives in a private venv; results are cached, so re-deploys are near-instant.
