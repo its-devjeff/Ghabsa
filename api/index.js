@@ -109,7 +109,7 @@ return res.status(errorStatus).json({
   success:false,
   status:errorStatus,
   message:errorMessage,
-  stack:err.stack
+  stack:process.env.NODE_ENV === 'production' ? undefined : err.stack
 })
 })
 
