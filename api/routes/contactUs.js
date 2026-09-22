@@ -3,17 +3,23 @@ const nodemailer = require('nodemailer');
 
 router.post('/send-email', (req, res) => {
     const { name, subject, email, message } = req.body;
-  
+
+    // Gmail credentials come from the environment (production: scripts/config/ghabsa-api.env).
+    // MAIL_PASS must be a Gmail App Password; mail stays off until it is set.
+    if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
+      return res.status(503).send('Email is not configured.');
+    }
+
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'ghabsaitug@gmail.com',
-        pass: 'erlenmeYer23'
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
       }
     });
-  
+
     const mailOptions = {
-      from: 'ghabsaitug@gmail.com',
+      from: process.env.MAIL_USER,
       to: 'bralogicatlast@gmail.com',
       subject: subject,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`
