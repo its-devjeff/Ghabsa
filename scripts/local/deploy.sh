@@ -133,6 +133,16 @@ deploy_client() {
     CI=false GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true npm run build
     [ -f build/index.html ] || die "build produced no build/index.html"
 
+    # The site ships ~56MB of camera-original photos. A resized WebP sibling of each, served by
+    # Nginx content negotiation, cuts that to a fraction with no URL/code changes (originals stay the
+    # fallback). Pillow lives in a private venv; results are cached, so re-deploys are near-instant.
+    log "==> Generating WebP variants of large images (cached)..."
+    IMG_VENV="$SCRIPTS_DIR/.venv"
+    if ! "$IMG_VENV/bin/python" -c 'import PIL' 2>/dev/null; then
+      python3 -m venv "$IMG_VENV" && "$IMG_VENV/bin/pip" install -q --disable-pip-version-check pillow
+    fi
+    "$IMG_VENV/bin/python" "$SCRIPTS_DIR/local/optimize-images.py" build "$SCRIPTS_DIR/.cache/webp"
+
     log "==> Pre-compressing text assets (served by gzip_static)..."
     find build -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' -o -name '*.json' \
       -o -name '*.svg' -o -name '*.txt' -o -name '*.ico' \) -size +1k -exec gzip -9 -k -f {} +
