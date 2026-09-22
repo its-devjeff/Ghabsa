@@ -57,7 +57,12 @@ mongoose.connect(process.env.DATABASE_URL, {
       console.log(`Backend is running on port ${PORT}`);
     });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    // Exit so the process supervisor (systemd in production) restarts and retries, instead of
+    // idling forever with no listener.
+    console.log(err);
+    process.exit(1);
+  });
 
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
