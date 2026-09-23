@@ -48,6 +48,7 @@ Internet :80/:443 → Nginx (server_name ghabsa.com www.ghabsa.com; never defaul
 
 ## Guarantees the scripts keep
 
+- **Recovered uploads are re-seeded.** `api/seed-uploads/` holds files that existing records point to; the deploy copies them into the store's `uploads/` add-only, so rebuilding the server restores them. The store itself stays gitignored, being user-uploaded content.
 - **Uploads survive deploys.** The code rsync excludes the upload dirs, which also protects them from `--delete`. Seed images committed in `api/` are copied in add-only mode, so a file uploaded on the server always wins.
 - **Nginx changes are fail-closed.** Every change is validated with `nginx -t` before a graceful reload, and a rejected config is rolled back. The site only answers for its own names, so it never captures traffic meant for any other server block.
 - **`npm ci` runs only when `api/package-lock.json` changes.** It runs on the box because `bcrypt` is native.
@@ -59,4 +60,4 @@ Internet :80/:443 → Nginx (server_name ghabsa.com www.ghabsa.com; never defaul
 
 - **Database backups.** Atlas M0 (free tier) has no automated backups. Upgrade the tier, or add a `mongodump` timer.
 - **Upload-store backups.** Nothing copies `/opt/ghabsa/production/data` off the box yet.
-- **Uploads from the previous host.** Files uploaded before this deployment (`api/uploads/`, `api/Dinner/`) were never in git, so the posts, dinner tables and timer that reference them show broken images. Copy them into `/opt/ghabsa/production/data/ghabsa-api/<dir>/` add-only (`rsync --ignore-existing`), then `chown -R ghabsa:ghabsa`. No redeploy needed.
+- **Library files from the previous host.** 19 files the `uploads` and `files` records reference (5 PDFs, their 5 cover images and 14 more) were never in git and are still missing, so those Library entries do not download. The blog, dinner table and timer images were recovered and now live in `api/seed-uploads/` and `api/Dinner/`. If the originals turn up, copy them into `/opt/ghabsa/production/data/ghabsa-api/<dir>/` add-only (`rsync --ignore-existing`), then `chown -R ghabsa:ghabsa`. No redeploy needed.

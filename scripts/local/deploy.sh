@@ -42,17 +42,21 @@ ship_api_code() {
   rsync_up --delete \
     --exclude '/node_modules' \
     --exclude '/uploads' --exclude '/Dinner' --exclude '/trendyPhoto' --exclude '/adverts' --exclude '/profile' \
+    --exclude '/seed-uploads' \
     --exclude '/.env' --exclude '/.env.*' --exclude '/credentials.json' --exclude '/index.js.bak' \
     --exclude '.DS_Store' --exclude '*.log' --exclude '.git' \
     "$API_SRC/" "$REMOTE:$API_CODE/"
 
-  # The repo ships seed images in four of the upload dirs. Copy any the store lacks - never
-  # overwrite, never delete - so what users uploaded on the server always wins.
+  # The repo ships seed images for these upload dirs. Copy any the store lacks - never overwrite,
+  # never delete - so what users uploaded on the server always wins. `seed-uploads` holds files
+  # recovered for records that reference them (it seeds `uploads/`, which is otherwise gitignored
+  # because it is user-uploaded content).
   log "==> Seeding committed images into the upload store (add-only)..."
-  local d
-  for d in Dinner trendyPhoto adverts profile; do
-    [ -d "$API_SRC/$d" ] || continue
-    rsync_up --ignore-existing --exclude '.DS_Store' "$API_SRC/$d/" "$REMOTE:$API_DATA/$d/"
+  local pair src dst
+  for pair in Dinner:Dinner trendyPhoto:trendyPhoto adverts:adverts profile:profile seed-uploads:uploads; do
+    src="${pair%%:*}"; dst="${pair##*:}"
+    [ -d "$API_SRC/$src" ] || continue
+    rsync_up --ignore-existing --exclude '.DS_Store' "$API_SRC/$src/" "$REMOTE:$API_DATA/$dst/"
   done
 
   ssh_script "$API_CODE" "$API_DATA" "$UPLOAD_DIRS" "$SVC_USER" <<'EOF'
