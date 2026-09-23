@@ -36,6 +36,14 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/Dinner', express.static(path.join(__dirname, 'Dinner')));
 app.use('/profile', express.static(path.join(__dirname, 'profile')));
 
+// Liveness + readiness probes for scripts/remote/health-check.sh. readyz reports the MongoDB
+// connection, so a 503 means "database down" while a 502 from Nginx means "app down".
+app.get('/healthz', (req, res) => res.json({ status: 'ok' }));
+app.get('/readyz', (req, res) => {
+  const connected = mongoose.connection.readyState === 1;
+  res.status(connected ? 200 : 503).json({ status: connected ? 'ok' : 'database unavailable' });
+});
+
 mongoose.set('strictQuery', false);
 
 mongoose.connect(process.env.DATABASE_URL, {
@@ -49,7 +57,12 @@ mongoose.connect(process.env.DATABASE_URL, {
       console.log(`Backend is running on port ${PORT}`);
     });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    // Exit so the process supervisor (systemd in production) restarts and retries, instead of
+    // idling forever with no listener.
+    console.log(err);
+    process.exit(1);
+  });
 
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
@@ -96,7 +109,7 @@ return res.status(errorStatus).json({
   success:false,
   status:errorStatus,
   message:errorMessage,
-  stack:err.stack
+  stack:process.env.NODE_ENV === 'production' ? undefined : err.stack
 })
 })
 

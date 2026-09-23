@@ -101,7 +101,7 @@ const ManageTable = () => {
     }
   };
   
-  const img_baseURL = 'http://localhost:5001/Dinner/';
+  const img_baseURL = '/Dinner/';
 
   return (
     <div className="MNT-div">

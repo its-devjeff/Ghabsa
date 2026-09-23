@@ -21,3 +21,9 @@ npm-debug.log*
 # OS / editor
 .DS_Store
 Thumbs.db
+
+# Deployment - operator-local target + production secrets (scripts/)
+scripts/.deploy.env
+scripts/config/ghabsa-api.env
+scripts/.venv/
+scripts/.cache/

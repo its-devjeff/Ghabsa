@@ -76,7 +76,7 @@ const Settings = () => {
     }
   };
 
-  const base_url = "http://localhost:5001/profile/";
+  const base_url = "/profile/";
 
   return (
     <div className='settings'>

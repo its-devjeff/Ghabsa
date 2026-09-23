@@ -58,7 +58,7 @@ function ManageBlog() {
       });
   };
   
-   const img_url = "http://localhost:5001/uploads/";
+   const img_url = "/uploads/";
   return (
     <div className="MNB-w">
       <h2>All Blog Posts</h2>

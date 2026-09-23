@@ -87,7 +87,7 @@ const Result = () => {
       });
   };
 
-  const img_url = 'http://localhost:5001/';
+  const img_url = '/';
 
   const indexOfLastResult = currentPage * resultsPerPage;
   const indexOfFirstResult = indexOfLastResult - resultsPerPage;

@@ -68,7 +68,7 @@ const Topbar = () => {
             </li>
             <li className='top-right-bottom-li'>
               <a
-                href='https://intern-buddy-five.vercel.app/'
+                href='https://intern-buddy.ghabsa.com/'
                 target='_blank'
                 rel='noopener noreferrer'
               >

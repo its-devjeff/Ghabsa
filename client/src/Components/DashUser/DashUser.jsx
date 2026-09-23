@@ -9,7 +9,7 @@ import './DashUser.css';
    only as a single most-recent teaser, as a pointer rather than a duplicate
    of the list. */
 
-const IMG_URL = 'http://localhost:5001/uploads/';
+const IMG_URL = '/uploads/';
 
 const DINNER = {
   name: 'Astra Aurea',

@@ -43,7 +43,7 @@ const SectionC = () => {
     }
   };
 
-  const img_url = "http://localhost:5001/uploads/";
+  const img_url = "/uploads/";
 
   return (
     <div className='SectionC-carousel-container'>

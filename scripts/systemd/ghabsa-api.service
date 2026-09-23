@@ -1,0 +1,50 @@
+[Unit]
+# Ghabsa API - Node/Express behind Nginx, bound to a private Unix socket.
+# Installed by scripts/provision/bootstrap.sh; re-installed on every API deploy.
+Description=Ghabsa API (Node/Express)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+User=ghabsa
+Group=ghabsa
+
+# systemd creates /run/ghabsa for the socket and removes it on every stop, so a crash never leaves
+# a stale socket behind (Node would refuse to bind over one). UMask 0007 makes the socket 0770
+# ghabsa:ghabsa - Nginx (www-data, in the ghabsa group) can connect; nothing else can. The same
+# umask makes uploads group-readable for Nginx, which serves them straight off disk.
+RuntimeDirectory=ghabsa
+RuntimeDirectoryMode=0750
+UMask=0007
+
+# The code dir, because multer writes to paths relative to the CWD (uploads/, Dinner/, ...). Each of
+# those is a symlink into /opt/ghabsa/production/data/ghabsa-api - see scripts/local/deploy.sh.
+WorkingDirectory=/opt/ghabsa/production/api/ghabsa-api
+
+# Secrets (DATABASE_URL, JWT, MAIL_*) - shipped from scripts/config/ghabsa-api.env by the deploy.
+# No "-" prefix: a missing env file must fail the start loudly, not boot with no database.
+EnvironmentFile=/etc/ghabsa/ghabsa-api.env
+
+# PORT and NODE_ENV are infrastructure, owned by this unit - so they are set via env(1) on the
+# command line, which beats EnvironmentFile (Environment= would lose to it: a PORT=5001 copied in
+# from a dev .env once made Node listen on *:5001 instead of the socket). The app does
+# app.listen(process.env.PORT), and a path makes Node listen on a Unix socket.
+# Plain node - not `npm start`, which runs nodemon (a file watcher) in production. The heap cap
+# keeps the V8 heap bounded; MemoryMax is the hard backstop on a small box.
+ExecStart=/usr/bin/env PORT=/run/ghabsa/api.sock NODE_ENV=production \
+    /usr/bin/node --max-old-space-size=384 index.js
+Restart=always
+RestartSec=3
+MemoryHigh=512M
+MemoryMax=768M
+
+# Hardening: the only writable path is the upload store.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/ghabsa/production/data
+
+[Install]
+WantedBy=multi-user.target
