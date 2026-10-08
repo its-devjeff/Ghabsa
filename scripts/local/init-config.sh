@@ -31,7 +31,7 @@ JWT=$(gen_secret)
 
 # Contact form (api/routes/contactUs.js) - Gmail SMTP. Needs a Gmail App Password, not the account
 # password. The form answers 503 while MAIL_PASS is empty.
-MAIL_USER=ghabsaitug@gmail.com
+MAIL_USER=ghabsait@gmail.com
 MAIL_PASS=
 EOF
   echo "Created $OUT"
@@ -39,7 +39,7 @@ else
   # Add anything a newer version of this script expects, without touching existing values.
   grep -q '^DATABASE_URL=' "$OUT" || echo 'DATABASE_URL=REPLACE_ATLAS_URI' >> "$OUT"
   grep -q '^JWT=' "$OUT"          || echo "JWT=$(gen_secret)" >> "$OUT"
-  grep -q '^MAIL_USER=' "$OUT"    || echo 'MAIL_USER=ghabsaitug@gmail.com' >> "$OUT"
+  grep -q '^MAIL_USER=' "$OUT"    || echo 'MAIL_USER=ghabsait@gmail.com' >> "$OUT"
   grep -q '^MAIL_PASS=' "$OUT"    || echo 'MAIL_PASS=' >> "$OUT"
   echo "Kept existing $OUT (added any missing keys)"
 fi
