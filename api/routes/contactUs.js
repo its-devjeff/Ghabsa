@@ -20,7 +20,8 @@ router.post('/send-email', (req, res) => {
 
     const mailOptions = {
       from: process.env.MAIL_USER,
-      to: 'bralogicatlast@gmail.com',
+      // Messages land in the same mailbox that sends them.
+      to: process.env.MAIL_USER,
       subject: subject,
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`
     };
