@@ -6,6 +6,13 @@ import './AppsMenu.css';
    than routes in this app, so every one of them opens in a new tab. */
 const APPS = [
   {
+    name: 'Registration',
+    blurb: 'Pay dues and register your courses',
+    href: 'https://registration.ghabsa.com/',
+    // Same mark the registration app carries in its own header.
+    thumb: '/ghabsalogo.png',
+  },
+  {
     name: 'Intern Buddy',
     blurb: 'Internship placements and applications',
     href: 'https://intern-buddy.ghabsa.com/',
